@@ -4,6 +4,7 @@ const app = express();
 const userRoute = require("./routers/login");
 const bookRoute = require("./routers/library");
 const authRoute = require("./routers/users");
+const leaveRoute =require("./routers/leave");
 
 const cors = require("cors");
 
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use("/api/login", userRoute);
 app.use("/api/library", bookRoute);
 app.use("/api/users", authRoute);
-
+app.use("/api/leave",leaveRoute);
 
 app.listen(PORT, () => console.log(`server is running on Port ${PORT}`));
 

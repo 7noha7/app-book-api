@@ -6,7 +6,7 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 const prisma = new PrismaClient();
 
 
-router.leave("/leave",isAuthenticated, async(req,res)=>{
+router.delete("/",isAuthenticated, async(req,res)=>{
 
   const userId =req.userId;
 
@@ -16,7 +16,7 @@ router.leave("/leave",isAuthenticated, async(req,res)=>{
   }
 
   try{
-await prisma.book.delete({ where: { id:userId}});
+await prisma.book.deleteMany({ where: { userId: userId}});
 
 await prisma.user.delete({ where: { id:userId}});
 return res.status(200).json({ message: "アカウントが削除されました"})
